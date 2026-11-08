@@ -5,16 +5,16 @@ from Base import *
 def run_7():
     """Заезд №7"""
     print_battery()
-    drive(360, start_speed=40, max_speed=60, end_speed=40, decel_mm=0, accel_rate=3)
-    right_att_run(70, 180)
+    drive(300, start_speed=30, max_speed=60, end_speed=60, decel_mm=0, accel_rate=5)
+    right_att_run(80, 180)
     wait(1000)
-    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=2)
-    drive(-500, start_speed=40, max_speed=80, end_speed=40, decel_mm=440, accel_rate=2)
+    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(-20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(20, start_speed=30, max_speed=60, end_speed=30, decel_mm=0, accel_rate=5)
+    drive(-300, start_speed=30, max_speed=80, end_speed=80, decel_mm=0, accel_rate=5)
 
 
 # Тестовый запуск: работает только если запустить ИМЕННО этот файл

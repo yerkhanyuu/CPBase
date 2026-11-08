@@ -22,7 +22,7 @@ def right_att_run(power, deg, block=True):
 # ==============================================================================
 # УДАР / ПРЯМАЯ МОЩНОСТЬ (dc)
 # ==============================================================================
-def left_att_dc(power, deg, timeout_ms=10000):
+def left_att_dc(power, deg, timeout_ms=1000):
     """Прямая мощность на левую насадку, пока не пройдёт deg градусов."""
     left_att_motor.reset_angle(0)
     timer = StopWatch()
@@ -34,7 +34,7 @@ def left_att_dc(power, deg, timeout_ms=10000):
         wait(2)
     left_att_motor.stop()
 
-def right_att_dc(power, deg, timeout_ms=2000):
+def right_att_dc(power, deg, timeout_ms=1000):
     """Прямая мощность на правую насадку, пока не пройдёт deg градусов."""
     right_att_motor.reset_angle(0)
     timer = StopWatch()
