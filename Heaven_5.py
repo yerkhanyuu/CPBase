@@ -6,6 +6,7 @@ def run_5():
     """Заезд №5"""
     print_battery()
 
+    set_heading(0)
     right_att_run(50, 40, block=False)
     drive(690, start_speed=10, max_speed=80, end_speed=30, decel_mm=100, accel_rate=5)
     turn_by(-90, max_power=40)
