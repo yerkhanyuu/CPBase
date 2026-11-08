@@ -121,14 +121,9 @@ runs = [run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9]
 def run_menu():
     max_index = len(runs) - 1
 
-    try:
-        saved_bytes = hub.system.storage(0, read=1)  # чтение — только через read=
-        if saved_bytes and saved_bytes[0] <= max_index:
-            current_index = saved_bytes[0]
-        else:
-            current_index = 0
-    except Exception:
-        current_index = 0
+    # ИЗМЕНЕНИЕ 1: Убрали чтение старой памяти. Теперь при запуске программы 
+    # всегда будет выбираться индекс 0 (что соответствует цифре 1)
+    current_index = 0
 
     hub.light.on(Color.BLUE)
 
@@ -165,7 +160,7 @@ def run_menu():
             while any(hub.buttons.pressed()):
                 wait(10)
 
-            set_heading(0)  # нулевой курс прямо перед стартом; дальше гироскоп не сбрасывается
+            set_heading(0)
 
             hub.light.on(Color.MAGENTA)
             hub.display.icon(ICON_GO)
@@ -173,18 +168,26 @@ def run_menu():
 
             try:
                 runs[current_index]()
-                stop_all()  # отпускаем моторы, чтобы они не держали позицию в меню
+                stop_motors()
                 hub.light.on(Color.GREEN)
                 hub.display.icon(ICON_OK)
                 wait(200)
+
+                # ИЗМЕНЕНИЕ 2: Автоматический переход к следующему заезду после финиша
+                current_index = (current_index + 1) % len(runs)
+                try:
+                    # Записываем новый номер в память
+                    hub.system.storage(0, bytes([current_index]))
+                except Exception:
+                    pass
+
             except Exception as e:
-                stop_all()  # ВАЖНО: иначе после ошибки моторы продолжат крутиться
+                stop_motors()
                 print("ОШИБКА В ЗАЕЗДЕ:", e)
                 hub.light.on(Color.RED)
                 wait(1000)
 
             hub.light.on(Color.BLUE)
-
 # ==============================================================================
 # ТОЧКА ВХОДА
 # ==============================================================================
